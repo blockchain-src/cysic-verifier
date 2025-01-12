@@ -77,9 +77,26 @@ function install_cysic_node() {
     # 设置权限
     chmod +x $CYSIC_PATH/verifier
 
-    # 创建配置文件
-    read -p "请输入您的奖励领取地址(ERC-20,ETH钱包地址): " CLAIM_REWARD_ADDRESS
-    cat <<EOF > $CYSIC_PATH/config.yaml
+# 配置钱包
+read -sp "请输入您的钱包私钥: " WALLET_PRIVATE_KEY
+echo
+if [[ -z "$WALLET_PRIVATE_KEY" ]]; then
+    echo "钱包私钥不能为空，请重新运行脚本并输入有效的私钥。"
+    exit 1
+fi
+
+ENV_FILE="$CYSIC_PATH/.env"
+echo "PRIVATE_KEY=\"$WALLET_PRIVATE_KEY\"" > "$ENV_FILE"
+echo ".env 文件已创建，并保存了您的私钥。"
+
+read -p "请输入您的奖励领取地址(ERC-20,ETH钱包地址): " CLAIM_REWARD_ADDRESS
+if [[ -z "$CLAIM_REWARD_ADDRESS" ]]; then
+    echo "奖励领取地址不能为空，请重新运行脚本并输入有效地址。"
+    exit 1
+fi
+
+# 创建配置文件
+cat <<EOF > $CYSIC_PATH/config.yaml
 chain:
   endpoint: "testnet-node-1.prover.xyz:9090"
   chain_id: "cysicmint_9000-1"
@@ -90,6 +107,9 @@ claim_reward_address: "$CLAIM_REWARD_ADDRESS"
 server:
   cysic_endpoint: "https://api-testnet.prover.xyz"
 EOF
+
+echo "配置文件 config.yaml 已生成，并保存到 $CYSIC_PATH。"
+
 
     # 创建启动脚本
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then

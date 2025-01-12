@@ -1,0 +1,11 @@
+nodejs
+npm
+pm2
+curl 
+wget 
+jq 
+make 
+gcc 
+xclip 
+python3-pip
+requests
