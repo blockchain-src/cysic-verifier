@@ -18,12 +18,12 @@ chmod +x install.sh && sudo ./install.sh
 ```
 ---
 ## 3️⃣安装交互式脚本
-**首次安装与启动**
+- 首次安装与启动
 ```bash
 chmod +x cysic.sh && sudo ./cysic.sh
 ```
 
-**后续启动**
+- 后续启动
 ```bash
 ./cysic.sh
 ```
