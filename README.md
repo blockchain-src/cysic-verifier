@@ -17,7 +17,7 @@ git clone https://github.com/blockchain-src/cysic-verifier.git && cd cysic-verif
 chmod +x install.sh && sudo ./install.sh
 ```
 ---
-## 3️⃣安装交互式脚本
+## 3️⃣执行互动式脚本
 - 首次安装与启动
 ```bash
 chmod +x cysic.sh && sudo ./cysic.sh
